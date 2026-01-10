@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PureCarat — Diamond Jewellery Landing Page</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Slick Slider (you said “silk slider” – commonly “Slick Slider”) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+  <!-- AOS (small animations per section) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --brand:#0ABAB5;           /* Tiffany-like */
+      --brand-dark:#078f8b;
+      --ink:#0b1220;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --soft:#f6fbfb;
+      --stroke:rgba(15, 23, 42, .10);
+      --shadow: 0 18px 50px rgba(2, 6, 23, .10);
+      --shadow-soft: 0 10px 30px rgba(2, 6, 23, .08);
+      --radius: 20px;
+    }
+
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--ink);
+      background: radial-gradient(1000px 600px at 10% -10%, rgba(10,186,181,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(10,186,181,.12), transparent 55%),
+                  #fff;
+    }
+
+    /* ---------- Utilities ---------- */
+    .container-xxl { max-width: 1180px; }
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.45rem .75rem; border:1px solid var(--stroke);
+      border-radius: 999px; background: rgba(255,255,255,.75);
+      backdrop-filter: blur(10px);
+      font-size:.9rem; color: rgba(2,6,23,.80);
+    }
+    .section{
+      padding: 76px 0;
+    }
+    .section-title{
+      font-size: clamp(1.4rem, 1.1rem + 1vw, 2.1rem);
+      letter-spacing: -0.02em;
+      margin-bottom: .35rem;
+    }
+    .section-sub{
+      color: var(--muted);
+      margin-bottom: 26px;
+      max-width: 720px;
+    }
+    .soft{
+      background: linear-gradient(180deg, rgba(10,186,181,.08), rgba(10,186,181,.02) 40%, transparent);
+      border-top: 1px solid rgba(15,23,42,.06);
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    .cardx{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+    .btn-brand{
+      background: var(--brand);
+      border: 1px solid rgba(0,0,0,.08);
+      color: #fff;
+      border-radius: 999px;
+      padding: .75rem 1.05rem;
+      box-shadow: 0 14px 32px rgba(10,186,181,.22);
+    }
+    .btn-brand:hover{ background: var(--brand-dark); color:#fff; transform: translateY(-1px); }
+    .btn-ghost{
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+    }
+    .btn-ghost:hover{ transform: translateY(-1px); }
+
+    /* ---------- Navbar ---------- */
+    .nav-glass{
+      background: rgba(255,255,255,.70);
+      border-bottom: 1px solid rgba(15,23,42,.08);
+      backdrop-filter: blur(12px);
+    }
+    .brand-dot{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--brand); display:inline-block;
+      box-shadow: 0 0 0 6px rgba(10,186,181,.15);
+    }
+
+    /* ---------- Hero Slider ---------- */
+    .hero{
+      min-height: 100vh;
+      display:flex;
+      align-items: stretch;
+      padding-top: 76px; /* navbar offset */
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .hero-wrap{
+      width: 100%;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    @media (max-width: 991.98px){
+      .hero .hero-wrap{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-copy{
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(15,23,42,.10);
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 420px;
+    }
+    .hero h1{
+      font-size: clamp(2rem, 1.4rem + 2.2vw, 3.3rem);
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+    .hero p{
+      color: rgba(2,6,23,.75);
+      font-size: 1.02rem;
+      max-width: 52ch;
+    }
+    .hero-badges{
+      display:flex; flex-wrap:wrap; gap:.5rem; margin-top: 8px;
+    }
+
+    .hero-slider{
+      height: calc(100vh - 76px - 22px); /* full view feel */
+      min-height: 520px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+    @media (max-width: 991.98px){
+      .hero-slider{
+        height: 60vh;
+        min-height: 420px;
+      }
+    }
+    .hero-slide{
+      height: calc(100vh - 76px - 22px);
+      min-height: 520px;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+    }
+    @media (max-width: 991.98px){
+      .hero-slide{
+        height: 60vh;
+        min-height: 420px;
+      }
+    }
+    .hero-slide::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(2,6,23,.55) 0%, rgba(2,6,23,.20) 55%, rgba(2,6,23,.10) 100%);
+    }
+    .hero-slide .caption{
+      position:absolute; left: 18px; right: 18px; bottom: 18px;
+      z-index:2;
+      color:#fff;
+      display:flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      align-items: end;
+    }
+    .caption .cap-title{
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1.2rem;
+    }
+    .caption .cap-sub{
+      opacity: .9;
+      font-size: .95rem;
+    }
+    .chip{
+      display:inline-flex; align-items:center;
+      padding:.4rem .65rem;
+      border-radius:999px;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(10px);
+      font-size:.9rem;
+    }
+    /* Slick dots polish */
+    .slick-dots li button:before{ font-size: 10px; opacity: .35; }
+    .slick-dots li.slick-active button:before{ opacity: .9; }
+    .slick-prev, .slick-next{ z-index:5; }
+    .slick-prev:before, .slick-next:before{ font-size: 26px; }
+
+    /* ---------- Product Cards ---------- */
+    .p-card{
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      overflow:hidden;
+      transition: transform .25s ease, box-shadow .25s ease;
+      height: 100%;
+    }
+    .p-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 18px 50px rgba(2,6,23,.14);
+    }
+    .p-media{
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, rgba(10,186,181,.15), rgba(10,186,181,.05));
+      position: relative;
+      overflow:hidden;
+    }
+    .p-media img{
+      width:100%; height:100%; object-fit: cover;
+      transform: scale(1.02);
+      transition: transform .35s ease;
+    }
+    .p-card:hover .p-media img{ transform: scale(1.07); }
+    .p-badge{
+      position:absolute; top:12px; left:12px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(15,23,42,.10);
+      border-radius:999px;
+      padding:.3rem .55rem;
+      font-size:.85rem;
+      display:flex; gap:.4rem; align-items:center;
+    }
+    .spark{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--brand);
+      box-shadow: 0 0 0 7px rgba(10,186,181,.12);
+    }
+    .p-body{ padding: 14px 14px 16px; }
+    .p-title{ font-weight: 700; letter-spacing:-.01em; margin:0; }
+    .p-meta{ color: var(--muted); font-size: .92rem; margin-top: 4px; }
+    .p-price{ font-weight: 800; margin-top: 10px; }
+    .p-actions{ display:flex; gap:10px; margin-top: 12px; }
+    .p-actions .btn{ flex:1; border-radius: 12px; }
+
+    /* ---------- Category Tiles ---------- */
+    .cat-tile{
+      position: relative;
+      border-radius: 22px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+      overflow:hidden;
+      box-shadow: var(--shadow-soft);
+      padding: 18px;
+      min-height: 170px;
+      transition: transform .25s ease;
+    }
+    .cat-tile:hover{ transform: translateY(-3px); }
+    .cat-blob{
+      position:absolute;
+      width: 160px; height: 160px;
+      right: -60px; top: -60px;
+      background: radial-gradient(circle at 30% 30%, rgba(10,186,181,.40), rgba(10,186,181,.05) 70%);
+      border-radius: 50%;
+      filter: blur(1px);
+    }
+    .cat-title{ font-weight:800; margin-bottom: 6px; }
+    .cat-sub{ color: var(--muted); font-size: .95rem; }
+    .arrow{
+      display:inline-flex; align-items:center; gap:.4rem;
+      margin-top: 10px;
+      font-weight: 600;
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+
+    /* ---------- Collection Mosaic ---------- */
+    .mosaic{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .mosaic .big{
+      min-height: 420px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      position: relative;
+      background: #fff;
+    }
+    .mosaic .small-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .mosaic .small{
+      min-height: 201px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      background: #fff;
+    }
+    .mosaic img{ width:100%; height:100%; object-fit: cover; }
+    .mosaic .overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, transparent 40%, rgba(2,6,23,.55) 100%);
+    }
+    .mosaic .label{
+      position:absolute; left: 16px; bottom: 14px; right: 16px;
+      color:#fff; z-index: 2;
+    }
+    .label .l1{ font-weight: 800; font-size: 1.25rem; letter-spacing: -.02em; }
+    .label .l2{ opacity: .92; }
+
+    @media (max-width: 991.98px){
+      .mosaic{ grid-template-columns: 1fr; }
+      .mosaic .big{ min-height: 320px; }
+      .mosaic .small{ min-height: 220px; }
+      .mosaic .small-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 575.98px){
+      .mosaic .small-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* ---------- Testimonials ---------- */
+    .t-card{
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.88);
+      box-shadow: var(--shadow-soft);
+      height: 100%;
+    }
+    .avatar{
+      width:42px;height:42px;border-radius:50%;
+      background: linear-gradient(135deg, rgba(10,186,181,.55), rgba(10,186,181,.10));
+      border: 1px solid rgba(15,23,42,.10);
+      display:grid; place-items:center;
+      font-weight: 800;
+      color: rgba(2,6,23,.8);
+    }
+    .stars{ letter-spacing: 1px; }
+
+    /* ---------- Blog ---------- */
+    .b-card{
+      border-radius: 22px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      overflow:hidden;
+      height: 100%;
+      transition: transform .25s ease;
+    }
+    .b-card:hover{ transform: translateY(-3px); }
+    .b-media{ aspect-ratio: 16/9; background: rgba(10,186,181,.10); }
+    .b-media img{ width:100%; height:100%; object-fit:cover; }
+    .b-body{ padding: 14px 14px 16px; }
+    .b-kicker{ color: var(--brand-dark); font-weight: 700; font-size: .9rem; }
+    .b-title{ font-weight: 800; margin: 6px 0; }
+    .b-desc{ color: var(--muted); font-size:.95rem; }
+
+    /* ---------- Footer ---------- */
+    footer{
+      padding: 40px 0 30px;
+      border-top: 1px solid rgba(15,23,42,.08);
+      background: rgba(255,255,255,.7);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ---------- Scroll reveal (fallback if AOS fails) ---------- */
+    .reveal{
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.is-visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sticky CTA for mobile */
+    .sticky-cta{
+      position: fixed;
+      left: 12px; right: 12px; bottom: 12px;
+      display:none;
+      gap: 10px;
+      z-index: 999;
+    }
+    .sticky-cta .btn{ border-radius: 14px; padding: .85rem 1rem; }
+    @media (max-width: 575.98px){
+      .sticky-cta{ display:flex; }
+      body{ padding-bottom: 80px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg nav-glass fixed-top">
+    <div class="container-xxl">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+        <span class="brand-dot"></span>
+        PureCarat
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small">
+          <li class="nav-item"><a class="nav-link" href="#trending">Trending</a></li>
+          <li class="nav-item"><a class="nav-link" href="#categories">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="#collection">Collections</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gifts">Gifts</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        </ul>
+
+        <div class="d-flex gap-2 ms-lg-3">
+          <a class="btn btn-ghost btn-sm" href="#trending">Shop Now</a>
+          <a class="btn btn-brand btn-sm" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO (4 image slider, 100vh feel on desktop & mobile) -->
+  <header class="hero" id="top">
+    <div class="container-xxl py-3">
+      <div class="hero-wrap">
+
+        <!-- Copy -->
+        <div class="hero-copy" data-aos="fade-up">
+          <div class="pill mb-3">
+            <span class="spark"></span>
+            IGI-Certified • Lab-Grown Diamonds • 14K/18K Gold
+          </div>
+
+          <h1 class="mb-3">
+            Luxury Diamond Jewellery — <span style="color:var(--brand-dark)">Smarter</span>, Ethical, Certified
+          </h1>
+
+          <p class="mb-4">
+            Discover timeless sparkle crafted for everyday elegance & bridal moments.
+            Premium finishing, transparent value, and designs that look “wow” in real life.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <a href="#trending" class="btn btn-brand">Shop Trending</a>
+            <a href="#categories" class="btn btn-ghost">Explore Categories</a>
+          </div>
+
+          <div class="hero-badges">
+            <span class="pill">Free guidance</span>
+            <span class="pill">Secure checkout</span>
+            <span class="pill">Hallmarked gold</span>
+            <span class="pill">Fast support</span>
+          </div>
+        </div>
+
+        <!-- Slider -->
+        <div class="hero-slider" data-aos="fade-left">
+          <div class="heroSlick">
+            <!-- Replace these images with your actual banners -->
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1600&q=80');">
+              <div class="caption">
+                <div>
+                  <div class="cap-title">Bridal Sparkle</div>
+                  <div class="cap-sub">Rings that look premium in every angle</div>
+                </div>
+                <span class="chip">Shop Rings</span>
+              </div>
+            </div>
+
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1600&q=80');">
+              <div class="caption">
+                <div>
+                  <div class="cap-title">Everyday Earrings</div>
+                  <div class="cap-sub">Minimal, modern, and ultra wearable</div>
+                </div>
+                <span class="chip">Shop Earrings</span>
+              </div>
+            </div>
+
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1601121141461-9d6647b7a2e5?auto=format&fit=crop&w=1600&q=80');">
+              <div class="caption">
+                <div>
+                  <div class="cap-title">Statement Pendants</div>
+                  <div class="cap-sub">Clean shine • high clarity look</div>
+                </div>
+                <span class="chip">Shop Pendants</span>
+              </div>
+            </div>
+
+            <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1543295204-2ae345412549?auto=format&fit=crop&w=1600&q=80');">
+              <div class="caption">
+                <div>
+                  <div class="cap-title">Gift-Ready Sets</div>
+                  <div class="cap-sub">Moments made memorable</div>
+                </div>
+                <span class="chip">Shop Gifts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- TRENDING PRODUCTS -->
+  <section class="section soft" id="trending">
+    <div class="container-xxl">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+        <div>
+          <h2 class="section-title" data-aos="fade-up">Trending Now</h2>
+          <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+            Best-selling pieces customers love for sparkle, comfort, and premium finishing.
+          </p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="120">
+          <a class="btn btn-ghost" href="#">View All</a>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <!-- Product Card Template (copy/paste) -->
+        <div class="col-12 col-sm-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Hot</span>
+              <img src="https://images.unsplash.com/photo-1601121141615-8d1f6a4f3f16?auto=format&fit=crop&w=1200&q=80" alt="Trending product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Round Stud Earrings</p>
+              <div class="p-meta">14K Gold • IGI Certified</div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="p-price">₹ 24,999</div>
+                <span class="pill">⭐ 4.8</span>
+              </div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Round Stud Earrings')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Round Stud Earrings')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> New</span>
+              <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1200&q=80" alt="Trending product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Solitaire Ring</p>
+              <div class="p-meta">18K Gold • Premium Finish</div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="p-price">₹ 59,990</div>
+                <span class="pill">⭐ 4.9</span>
+              </div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Solitaire Ring')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Solitaire Ring')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Best</span>
+              <img src="https://images.unsplash.com/photo-1601121141461-9d6647b7a2e5?auto=format&fit=crop&w=1200&q=80" alt="Trending product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Halo Pendant</p>
+              <div class="p-meta">14K Gold • Daily Wear</div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="p-price">₹ 39,500</div>
+                <span class="pill">⭐ 4.7</span>
+              </div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Halo Pendant')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Halo Pendant')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Gift</span>
+              <img src="https://images.unsplash.com/photo-1543295204-2ae345412549?auto=format&fit=crop&w=1200&q=80" alt="Trending product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Diamond Bracelet</p>
+              <div class="p-meta">14K Gold • Elegant</div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="p-price">₹ 49,990</div>
+                <span class="pill">⭐ 4.8</span>
+              </div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Diamond Bracelet')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Diamond Bracelet')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY PRODUCTS -->
+  <section class="section" id="categories">
+    <div class="container-xxl">
+      <h2 class="section-title" data-aos="fade-up">Shop by Category</h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+        Find your perfect piece faster — rings, earrings, mangalsutra, bracelets, and pendants.
+      </p>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Rings</div>
+                <div class="cat-sub">Solitaire • Halo • Minimal</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">Top</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Earrings</div>
+                <div class="cat-sub">Studs • Hoops • Drops</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">New</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Mangalsutra</div>
+                <div class="cat-sub">Modern • Elegant • Daily</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">Hot</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Bracelets</div>
+                <div class="cat-sub">Tennis • Minimal • Luxe</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">Gift</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Pendants</div>
+                <div class="cat-sub">Solitaire • Halo • Hearts</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">Best</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="cat-tile">
+            <div class="cat-blob"></div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="cat-title">Premium Sets</div>
+                <div class="cat-sub">Matching • Bridal • Luxe</div>
+                <a class="arrow" href="#">Explore <span>→</span></a>
+              </div>
+              <span class="pill">✨</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR COLLECTION -->
+  <section class="section soft" id="collection">
+    <div class="container-xxl">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+        <div>
+          <h2 class="section-title" data-aos="fade-up">Our Collections</h2>
+          <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+            Curated styles that convert: minimal daily wear, bridal sparkle, and gifting favourites.
+          </p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="120">
+          <a class="btn btn-brand" href="#">Explore All Collections</a>
+        </div>
+      </div>
+
+      <div class="mosaic">
+        <div class="big reveal">
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1600&q=80" alt="Collection hero">
+          <div class="overlay"></div>
+          <div class="label">
+            <div class="l1">Bridal Glow</div>
+            <div class="l2">Signature rings made to shine in photos & real life</div>
+          </div>
+        </div>
+
+        <div class="small-grid">
+          <div class="small reveal">
+            <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1600&q=80" alt="Collection">
+            <div class="overlay"></div>
+            <div class="label">
+              <div class="l1">Daily Minimal</div>
+              <div class="l2">Comfort-fit • clean shine</div>
+            </div>
+          </div>
+
+          <div class="small reveal">
+            <img src="https://images.unsplash.com/photo-1543295204-2ae345412549?auto=format&fit=crop&w=1600&q=80" alt="Collection">
+            <div class="overlay"></div>
+            <div class="label">
+              <div class="l1">Gift Edit</div>
+              <div class="l2">Most loved picks under premium budgets</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GIFTS PRODUCT -->
+  <section class="section" id="gifts">
+    <div class="container-xxl">
+      <h2 class="section-title" data-aos="fade-up">Gift-Ready Picks</h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+        Anniversary, birthday, bridal, or “just because” — these styles perform best for gifting.
+      </p>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Gift</span>
+              <img src="https://images.unsplash.com/photo-1601121141461-9d6647b7a2e5?auto=format&fit=crop&w=1200&q=80" alt="Gift product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Heart Pendant</p>
+              <div class="p-meta">14K Gold • Romantic</div>
+              <div class="p-price">₹ 29,990</div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Heart Pendant')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Heart Pendant')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Gift</span>
+              <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1200&q=80" alt="Gift product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Classic Studs</p>
+              <div class="p-meta">Minimal • Daily Wear</div>
+              <div class="p-price">₹ 19,990</div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Classic Studs')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Classic Studs')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Gift</span>
+              <img src="https://images.unsplash.com/photo-1543295204-2ae345412549?auto=format&fit=crop&w=1200&q=80" alt="Gift product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Tennis Bracelet</p>
+              <div class="p-meta">Elegant • Premium</div>
+              <div class="p-price">₹ 69,990</div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Tennis Bracelet')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Tennis Bracelet')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3 reveal">
+          <div class="p-card">
+            <div class="p-media">
+              <span class="p-badge"><span class="spark"></span> Gift</span>
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80" alt="Gift product">
+            </div>
+            <div class="p-body">
+              <p class="p-title">Promise Ring</p>
+              <div class="p-meta">Bridal • Statement</div>
+              <div class="p-price">₹ 44,990</div>
+              <div class="p-actions">
+                <button class="btn btn-ghost btn-sm" onclick="quickView('Promise Ring')">Quick View</button>
+                <button class="btn btn-brand btn-sm" onclick="addToCart('Promise Ring')">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="section soft" id="testimonials">
+    <div class="container-xxl">
+      <h2 class="section-title" data-aos="fade-up">Testimonials</h2>
+      <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+        What customers say about sparkle, finishing, and the PureCarat experience.
+      </p>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="t-card">
+            <div class="d-flex gap-3 align-items-center mb-2">
+              <div class="avatar">A</div>
+              <div>
+                <div class="fw-bold">Ayesha</div>
+                <div class="small text-muted">Ahmedabad</div>
+              </div>
+              <div class="ms-auto stars">★★★★★</div>
+            </div>
+            <p class="mb-0 text-muted">
+              “The sparkle looks premium and the finishing is super clean. Loved the packaging and fast support!”
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="t-card">
+            <div class="d-flex gap-3 align-items-center mb-2">
+              <div class="avatar">R</div>
+              <div>
+                <div class="fw-bold">Riya</div>
+                <div class="small text-muted">Surat</div>
+              </div>
+              <div class="ms-auto stars">★★★★★</div>
+            </div>
+            <p class="mb-0 text-muted">
+              “Bought earrings for daily wear — lightweight and looks expensive. Great guidance on WhatsApp.”
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <div class="t-card">
+            <div class="d-flex gap-3 align-items-center mb-2">
+              <div class="avatar">K</div>
+              <div>
+                <div class="fw-bold">Kunal</div>
+                <div class="small text-muted">Mumbai</div>
+              </div>
+              <div class="ms-auto stars">★★★★★</div>
+            </div>
+            <p class="mb-0 text-muted">
+              “Gifted a pendant—everyone thought it’s natural diamond. Value for money and genuine service.”
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG SECTION -->
+  <section class="section" id="blog">
+    <div class="container-xxl">
+      <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+        <div>
+          <h2 class="section-title" data-aos="fade-up">From Our Blog</h2>
+          <p class="section-sub" data-aos="fade-up" data-aos-delay="80">
+            Short, helpful reads that build trust and improve conversion (perfect for SEO & ads).
+          </p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="120">
+          <a class="btn btn-ghost" href="#">Read More</a>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <article class="b-card">
+            <div class="b-media">
+              <img src="https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=1400&q=80" alt="Blog">
+            </div>
+            <div class="b-body">
+              <div class="b-kicker">Buying Guide</div>
+              <div class="b-title">Lab-Grown vs Natural: What’s the Difference?</div>
+              <div class="b-desc">Simple explanation for clarity, value, and certification.</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <article class="b-card">
+            <div class="b-media">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1400&q=80" alt="Blog">
+            </div>
+            <div class="b-body">
+              <div class="b-kicker">Style</div>
+              <div class="b-title">Best Earrings for Daily Wear</div>
+              <div class="b-desc">Top styles that look premium and feel comfortable.</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 reveal">
+          <article class="b-card">
+            <div class="b-media">
+              <img src="https://images.unsplash.com/photo-1543295204-2ae345412549?auto=format&fit=crop&w=1400&q=80" alt="Blog">
+            </div>
+            <div class="b-body">
+              <div class="b-kicker">Gifting</div>
+              <div class="b-title">How to Choose the Perfect Gift Jewellery</div>
+              <div class="b-desc">Budget, occasion, and design tips to avoid confusion.</div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container-xxl">
+      <div class="row g-3 align-items-start">
+        <div class="col-12 col-lg-4">
+          <div class="fw-bold mb-2 d-flex align-items-center gap-2">
+            <span class="brand-dot"></span> PureCarat
+          </div>
+          <p class="text-muted mb-0">
+            Premium lab-grown diamond jewellery • IGI-certified • crafted in 14K & 18K gold.
+          </p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="fw-bold mb-2">Shop</div>
+          <div class="d-flex flex-column gap-1 small">
+            <a href="#categories" class="text-decoration-none text-muted">Categories</a>
+            <a href="#trending" class="text-decoration-none text-muted">Trending</a>
+            <a href="#gifts" class="text-decoration-none text-muted">Gifts</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <div class="fw-bold mb-2">Help</div>
+          <div class="d-flex flex-column gap-1 small">
+            <a href="#" class="text-decoration-none text-muted">Shipping</a>
+            <a href="#" class="text-decoration-none text-muted">Returns</a>
+            <a href="#" class="text-decoration-none text-muted">Contact</a>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="fw-bold mb-2">Get Offers</div>
+          <form class="d-flex gap-2" onsubmit="subscribe(event)">
+            <input class="form-control" type="email" required placeholder="Enter email">
+            <button class="btn btn-brand" type="submit">Subscribe</button>
+          </form>
+          <div class="small text-muted mt-2">No spam. Only new drops & offers.</div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top small text-muted">
+        <div>© <span id="year"></span> PureCarat. All rights reserved.</div>
+        <div class="d-flex gap-3">
+          <a class="text-muted text-decoration-none" href="#top">Top</a>
+          <a class="text-muted text-decoration-none" href="#">Privacy</a>
+          <a class="text-muted text-decoration-none" href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky CTA -->
+  <div class="sticky-cta">
+    <a href="#trending" class="btn btn-brand w-50">Shop</a>
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noreferrer" class="btn btn-ghost w-50">WhatsApp</a>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:18px;">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="qvTitle">Quick View</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-muted">
+          This is a demo quick view. Connect this to Shopify product data / JSON API.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-brand" onclick="fakeCheckout()">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS: Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS: jQuery (required for Slick) -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+  <!-- JS: Slick -->
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <!-- JS: AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Slick init (Hero: 4 images slider)
+    $(document).ready(function(){
+      $('.heroSlick').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 650,
+        autoplay: true,
+        autoplaySpeed: 3500,
+        fade: true,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        cssEase: 'ease-in-out',
+        adaptiveHeight: false
+      });
+    });
+
+    // AOS init
+    AOS.init({
+      duration: 700,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 60
+    });
+
+    // Fallback reveal animations (for each section item)
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Demo functions (replace with Shopify actions)
+    function addToCart(productName){
+      // Replace: Shopify Ajax API / cart/add.js
+      toast(`Added: ${productName}`);
+    }
+    function quickView(productName){
+      document.getElementById('qvTitle').textContent = productName;
+      const modal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+      modal.show();
+    }
+    function fakeCheckout(){
+      toast('Demo checkout. Connect to Shopify checkout.');
+    }
+    function subscribe(e){
+      e.preventDefault();
+      toast('Subscribed! (Demo)');
+      e.target.reset();
+    }
+
+    // Tiny toast (no extra library)
+    function toast(msg){
+      const t = document.createElement('div');
+      t.textContent = msg;
+      t.style.position = 'fixed';
+      t.style.left = '50%';
+      t.style.bottom = '92px';
+      t.style.transform = 'translateX(-50%)';
+      t.style.background = 'rgba(17,24,39,.92)';
+      t.style.color = '#fff';
+      t.style.padding = '10px 14px';
+      t.style.borderRadius = '14px';
+      t.style.fontSize = '14px';
+      t.style.zIndex = 2000;
+      t.style.boxShadow = '0 18px 40px rgba(0,0,0,.22)';
+      document.body.appendChild(t);
+      setTimeout(()=>{ t.style.opacity = '0'; t.style.transition = 'opacity .35s ease'; }, 1400);
+      setTimeout(()=> t.remove(), 1800);
+    }
+  </script>
+</body>
+</html>
