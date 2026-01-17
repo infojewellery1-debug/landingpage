@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Diamond Loader</title>
+
+<style>
+/* ===== PRELOADER WRAPPER ===== */
+#diamond-loader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* ===== HIDE STATE ===== */
+#diamond-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ===== DIAMOND SHAPE ===== */
+.diamond {
+  width: 60px;
+  height: 60px;
+  transform: rotate(45deg);
+  position: relative;
+  animation: diamond-rotate 2.2s ease-in-out infinite;
+}
+
+.diamond::before,
+.diamond::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #e9f7f6 25%,
+    #bff2ec 50%,
+    #e9f7f6 75%,
+    #ffffff 100%
+  );
+  border: 1px solid rgba(129, 216, 208, 0.35);
+}
+
+/* ===== SPARKLE ===== */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #81D8D0;
+  border-radius: 50%;
+  animation: sparkle 1.4s ease-in-out infinite;
+}
+
+.sparkle:nth-child(2) {
+  top: -12px;
+  left: 50%;
+  animation-delay: .3s;
+}
+
+.sparkle:nth-child(3) {
+  right: -12px;
+  top: 50%;
+  animation-delay: .6s;
+}
+
+.sparkle:nth-child(4) {
+  bottom: -12px;
+  left: 50%;
+  animation-delay: .9s;
+}
+
+/* ===== TEXT ===== */
+.loader-text {
+  margin-top: 28px;
+  font-family: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #9aa6a6;
+  text-align: center;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes diamond-rotate {
+  0%   { transform: rotate(45deg) scale(1); }
+  50%  { transform: rotate(45deg) scale(1.08); }
+  100% { transform: rotate(45deg) scale(1); }
+}
+
+@keyframes sparkle {
+  0%   { opacity: 0; transform: scale(0.4); }
+  50%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.4); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div id="diamond-loader">
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    
+    <div class="diamond">
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+      <span class="sparkle"></span>
+    </div>
+
+    <div class="loader-text">
+      CRAFTING BRILLIANCE
+    </div>
+
+  </div>
+</div>
+
+<script>
+window.addEventListener("load", function () {
+  const loader = document.getElementById("diamond-loader");
+  setTimeout(() => {
+    loader.classList.add("hide");
+  }, 500);
+});
+</script>
+
+</body>
+</html>

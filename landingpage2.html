@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PURECARAT — IGI Certified Lab-Grown Diamond Jewellery</title>
+  <meta name="description" content="Shop IGI certified lab-grown diamond jewellery. BIS hallmark gold. Free insured shipping. Easy returns. Get best price & custom quote on WhatsApp." />
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --card:#f8fafc;
+      --border:#e2e8f0;
+      --accent:#81D8D0;     /* Tiffany-like */
+      --accent2:#BFF2EC;
+      --dark:#0b1220;
+      --shadow: 0 10px 30px rgba(2,8,23,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:linear-gradient(180deg, #ffffff 0%, #fbffff 40%, #ffffff 100%);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1140px; margin:0 auto; padding:0 18px}
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:rgba(255,255,255,.75);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.4px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: radial-gradient(circle at 25% 30%, #fff 0%, var(--accent2) 30%, var(--accent) 70%);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: 0 6px 18px rgba(129,216,208,.22);
+    }
+    .navlinks{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .navlinks a{font-size:14px; color:var(--muted)}
+    .navcta{display:flex; gap:10px; align-items:center}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 14px; border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: 0 8px 18px rgba(2,8,23,.06);
+      font-weight:700; font-size:14px;
+      cursor:pointer;
+      transition:.15s transform ease, .15s box-shadow ease, .15s background ease;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 12px 28px rgba(2,8,23,.08)}
+    .btn.primary{
+      border-color: rgba(129,216,208,.35);
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+      color:var(--dark);
+    }
+    .hero{
+      padding:46px 0 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(191,242,236,.55);
+      border:1px solid rgba(129,216,208,.35);
+      color:#0b1220;
+      font-weight:800;
+      font-size:13px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.8px;
+    }
+    .sub{
+      font-size:16px;
+      color:var(--muted);
+      line-height:1.6;
+      max-width:52ch;
+    }
+    .heroCTAs{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .trustRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .pill{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:13px;
+      color:var(--muted);
+      display:inline-flex;
+      gap:8px; align-items:center;
+    }
+    .pill b{color:var(--text)}
+    .card{
+      background:linear-gradient(180deg, #ffffff 0%, #fbfeff 100%);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .quoteCard{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height: 420px;
+    }
+    .quoteTop h3{
+      margin:4px 0 2px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .quoteTop p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
+    .form{
+      margin-top:14px;
+      display:grid;
+      gap:10px;
+    }
+    label{font-size:12px; color:var(--muted); font-weight:700}
+    input, select, textarea{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      outline:none;
+      font-size:14px;
+    }
+    input:focus, select:focus, textarea:focus{border-color: rgba(129,216,208,.9); box-shadow:0 0 0 4px rgba(129,216,208,.22)}
+    .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .fine{
+      font-size:12px; color:var(--muted);
+      line-height:1.5;
+      margin-top:10px;
+    }
+    .section{padding:34px 0}
+    .section h2{
+      margin:0 0 10px;
+      font-size:28px;
+      letter-spacing:-.4px;
+    }
+    .section .lead{
+      margin:0 0 18px;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:70ch;
+    }
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:14px}
+    .grid2{display:grid; grid-template-columns:repeat(2, 1fr); gap:14px}
+    .feature{
+      padding:16px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: 0 10px 26px rgba(2,8,23,.05);
+    }
+    .feature h4{margin:8px 0 6px; font-size:16px}
+    .feature p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
+    .icon{
+      width:40px; height:40px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(129,216,208,.9), rgba(191,242,236,.9));
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(15,23,42,.06);
+      color:#0b1220; font-weight:900;
+    }
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .proof{
+      padding:18px;
+    }
+    .proof ul{margin:10px 0 0; padding:0 0 0 18px; color:var(--muted); line-height:1.8}
+    .products{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+    .prod{
+      overflow:hidden;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow: 0 10px 26px rgba(2,8,23,.05);
+      display:flex; flex-direction:column;
+    }
+    .prod .img{
+      height:160px;
+      background: radial-gradient(circle at 30% 20%, #fff 0%, rgba(191,242,236,.55) 38%, rgba(129,216,208,.35) 72%);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(15,23,42,.65);
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+    .prod .body{padding:14px}
+    .price{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:10px; color:var(--muted); font-size:13px
+    }
+    .tag{
+      display:inline-flex; gap:6px; align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      font-size:12px; color:var(--muted);
+      background:#fff;
+    }
+    .faq{
+      border-top:1px solid var(--border);
+    }
+    details{
+      padding:14px 0;
+      border-bottom:1px solid var(--border);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--text);
+      list-style:none;
+      display:flex; justify-content:space-between; gap:12px; align-items:center;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color:var(--muted); line-height:1.7}
+    .footer{
+      padding:26px 0 40px;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      font-size:13px;
+    }
+    .stickyBar{
+      position:fixed; left:0; right:0; bottom:0;
+      background:rgba(255,255,255,.85);
+      backdrop-filter:saturate(160%) blur(10px);
+      border-top:1px solid var(--border);
+      padding:10px 12px;
+      display:none;
+      z-index:60;
+    }
+    .stickyInner{
+      max-width:1140px; margin:0 auto;
+      display:flex; gap:10px; align-items:center; justify-content:space-between;
+    }
+    .stickyInner .txt{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .stickyInner .txt b{color:var(--text)}
+    .stickyInner .txt span{font-size:12px; color:var(--muted)}
+    .stickyInner .actions{display:flex; gap:10px}
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr; }
+      h1{font-size:38px}
+      .quoteCard{min-height:auto}
+      .grid3, .products{grid-template-columns:1fr}
+      .split, .grid2{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      .navlinks{display:none}
+      .row2{grid-template-columns:1fr}
+      .stickyBar{display:block}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>PURECARAT</div>
+        </div>
+
+        <div class="navlinks">
+          <a href="#why">Why Us</a>
+          <a href="#bestsellers">Best Sellers</a>
+          <a href="#how">How It Works</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="navcta">
+          <a class="btn" href="#quote">Get Quote</a>
+          <a class="btn primary" href="https://wa.me/XXXXXXXXXXX?text=Hi%20PURECARAT%2C%20I%20want%20best%20price%20quote%20for%20lab-grown%20diamond%20jewellery." target="_blank" rel="noopener">
+            WhatsApp Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker">IGI Certified • BIS Hallmark Gold • Luxury Finish</div>
+          <h1>Lab-Grown Diamond Jewellery that looks <span style="background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Ultra-Luxury</span> — priced smarter.</h1>
+          <p class="sub">
+            Choose timeless sparkle with confidence. Every piece is crafted with certified lab-grown diamonds,
+            BIS hallmark gold, and premium finishing — backed by easy returns and insured delivery.
+          </p>
+
+          <div class="heroCTAs">
+            <a class="btn primary" href="#quote">Get Best Price Quote</a>
+            <a class="btn" href="#bestsellers">Shop Best Sellers</a>
+            <a class="btn" href="https://purecarat.in/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+
+          <div class="trustRow">
+            <div class="pill"><b>Free</b> Insured Shipping</div>
+            <div class="pill"><b>7-Day</b> Easy Returns</div>
+            <div class="pill"><b>IGI</b> Certified Diamonds</div>
+            <div class="pill"><b>BIS</b> Hallmark Gold</div>
+            <div class="pill"><b>Free</b> Resizing</div>
+          </div>
+
+          <p class="fine">
+            ✅ Best for: Engagement • Anniversary • Daily Wear • Gifting • Custom Designs
+          </p>
+        </div>
+
+        <!-- QUOTE FORM CARD -->
+        <div id="quote" class="card quoteCard">
+          <div class="quoteTop">
+            <span class="tag">🔥 Get best price in 10 minutes</span>
+            <h3>Get Your Custom Quote (WhatsApp + Email)</h3>
+            <p>Share your budget + occasion. We’ll send 3 best options with certificate proof.</p>
+          </div>
+
+          <form class="form" onsubmit="return handleLead(event)">
+            <div class="row2">
+              <div>
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div>
+                <label for="phone">WhatsApp Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="+91 XXXXX XXXXX" required />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div>
+                <label for="budget">Budget Range</label>
+                <select id="budget" name="budget" required>
+                  <option value="">Select</option>
+                  <option>₹10,000 – ₹25,000</option>
+                  <option>₹25,000 – ₹50,000</option>
+                  <option>₹50,000 – ₹1,00,000</option>
+                  <option>₹1,00,000 – ₹2,00,000</option>
+                  <option>₹2,00,000+</option>
+                </select>
+              </div>
+              <div>
+                <label for="category">Interested In</label>
+                <select id="category" name="category" required>
+                  <option value="">Select</option>
+                  <option>Ring</option>
+                  <option>Earrings</option>
+                  <option>Pendant</option>
+                  <option>Necklace</option>
+                  <option>Bracelet</option>
+                  <option>Custom Design</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="occasion">Occasion</label>
+              <select id="occasion" name="occasion" required>
+                <option value="">Select</option>
+                <option>Engagement / Proposal</option>
+                <option>Wedding / Bridal</option>
+                <option>Anniversary</option>
+                <option>Birthday / Gift</option>
+                <option>Daily Wear</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="note">Any preference (optional)</label>
+              <textarea id="note" name="note" rows="3" placeholder="Metal color, diamond size, style, delivery date..."></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Get Quote on WhatsApp</button>
+
+            <div class="fine">
+              By submitting, you agree to be contacted by WhatsApp/SMS/Email. No spam — only your quote & updates.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHY US -->
+  <section id="why" class="section">
+    <div class="container">
+      <h2>Why PURECARAT?</h2>
+      <p class="lead">
+        Jewellery is not an impulse buy — it’s a trust buy. We build confidence with certification, transparent details,
+        and luxury finishing you can see clearly.
+      </p>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="icon">IGI</div>
+          <h4>IGI Certified Diamonds</h4>
+          <p>Every diamond comes with certification so you know exactly what you’re buying.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">BIS</div>
+          <h4>BIS Hallmark Gold</h4>
+          <p>Gold purity you can trust — 14K/18K options with hallmark assurance.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">✨</div>
+          <h4>Luxury Finish</h4>
+          <p>Premium polishing, clean prong work, and micro-reflections that feel high-end.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">🛡</div>
+          <h4>Insured Delivery</h4>
+          <p>Safe shipping with insurance and secure packaging for peace of mind.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">↩</div>
+          <h4>Easy Returns</h4>
+          <p>Simple return process (policy-based) so you can shop confidently.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">💬</div>
+          <h4>Expert Support</h4>
+          <p>Get options by budget and style — we help you choose what actually suits you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF / EDUCATION -->
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="card proof">
+          <h2>Lab-Grown vs Natural — the smart choice</h2>
+          <p class="lead" style="margin-bottom:0">
+            Same sparkle, same structure, more value. Pay for beauty — not inflated markups.
+          </p>
+          <ul>
+            <li>Looks identical to natural diamonds</li>
+            <li>Certified grading (cut, color, clarity, carat)</li>
+            <li>More budget-friendly for the same quality</li>
+            <li>Perfect for daily wear + gifting</li>
+          </ul>
+          <div class="heroCTAs" style="margin-top:14px">
+            <a class="btn primary" href="#quote">Get Price Comparison</a>
+            <a class="btn" href="https://wa.me/XXXXXXXXXXX?text=Hi%20PURECARAT%2C%20please%20share%20lab-grown%20vs%20natural%20price%20comparison." target="_blank" rel="noopener">Ask on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card proof">
+          <h2>What you will receive</h2>
+          <p class="lead" style="margin-bottom:0">
+            We send you 3 best options with clear proof — so you buy with confidence.
+          </p>
+          <ul>
+            <li>IGI certificate copy / details</li>
+            <li>Diamond specs: carat, mm size, clarity, color</li>
+            <li>Gold purity details (BIS hallmark)</li>
+            <li>Delivery timeline + packaging info</li>
+            <li>Video / close-up photos (on request)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <section id="bestsellers" class="section">
+    <div class="container">
+      <h2>Best Sellers (High Conversion Picks)</h2>
+      <p class="lead">Replace placeholders with your actual products or link to collections on your Shopify store.</p>
+
+      <div class="products">
+        <div class="prod">
+          <div class="img">RING IMAGE</div>
+          <div class="body">
+            <b>Classic Solitaire Ring</b>
+            <div class="price"><span>Round / Oval options</span><span>From ₹XX,XXX</span></div>
+            <div class="heroCTAs" style="margin-top:12px">
+              <a class="btn primary" href="#quote">Get Quote</a>
+              <a class="btn" href="https://purecarat.in/collections/rings" target="_blank" rel="noopener">View Rings</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod">
+          <div class="img">EARRING IMAGE</div>
+          <div class="body">
+            <b>Everyday Stud Earrings</b>
+            <div class="price"><span>Minimal + Luxury</span><span>From ₹XX,XXX</span></div>
+            <div class="heroCTAs" style="margin-top:12px">
+              <a class="btn primary" href="#quote">Get Quote</a>
+              <a class="btn" href="https://purecarat.in/collections/earrings" target="_blank" rel="noopener">View Earrings</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod">
+          <div class="img">PENDANT IMAGE</div>
+          <div class="body">
+            <b>Diamond Pendant</b>
+            <div class="price"><span>Gift-ready</span><span>From ₹XX,XXX</span></div>
+            <div class="heroCTAs" style="margin-top:12px">
+              <a class="btn primary" href="#quote">Get Quote</a>
+              <a class="btn" href="https://purecarat.in/collections/pendants" target="_blank" rel="noopener">View Pendants</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="section">
+    <div class="container">
+      <h2>How it works</h2>
+      <p class="lead">Simple 3-step process that converts visitors into confident buyers.</p>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="icon">1</div>
+          <h4>Tell us your budget & style</h4>
+          <p>Fill the quote form or message on WhatsApp.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">2</div>
+          <h4>Get 3 best options + proof</h4>
+          <p>We share certified options with specs, photos, and timelines.</p>
+        </div>
+
+        <div class="feature">
+          <div class="icon">3</div>
+          <h4>Buy with confidence</h4>
+          <p>Secure checkout, insured delivery, and easy return support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS / UGC -->
+  <section id="reviews" class="section">
+    <div class="container">
+      <h2>Customer love (add your real reviews)</h2>
+      <p class="lead">Replace below with your Shopify reviews, screenshots, or video testimonials.</p>
+
+      <div class="grid3">
+        <div class="feature">
+          <div class="tag">★★★★★</div>
+          <h4>“Sparkle is insane!”</h4>
+          <p>Looks premium and delivery was super safe. Certificate shared instantly.</p>
+        </div>
+        <div class="feature">
+          <div class="tag">★★★★★</div>
+          <h4>“Best value for money”</h4>
+          <p>Got the same look as natural diamonds for much better pricing.</p>
+        </div>
+        <div class="feature">
+          <div class="tag">★★★★★</div>
+          <h4>“Perfect gifting”</h4>
+          <p>Packaging was luxury. My wife loved it — sizing help was easy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2>FAQ</h2>
+      <p class="lead">Clear answers remove hesitation and increase conversion rate.</p>
+
+      <div class="faq">
+        <details>
+          <summary>Are lab-grown diamonds real diamonds? <span>+</span></summary>
+          <p>Yes. Lab-grown diamonds have the same chemical and optical properties as mined diamonds. They are graded and certified similarly.</p>
+        </details>
+
+        <details>
+          <summary>Do you provide certificates? <span>+</span></summary>
+          <p>Yes. We provide IGI certification details for eligible pieces/diamonds as per product listing and order.</p>
+        </details>
+
+        <details>
+          <summary>What about gold purity and hallmarking? <span>+</span></summary>
+          <p>We use BIS hallmark gold where applicable. You can choose 14K or 18K based on design and preference.</p>
+        </details>
+
+        <details>
+          <summary>How long does delivery take? <span>+</span></summary>
+          <p>Delivery depends on design and customization. We share timeline upfront before you confirm.</p>
+        </details>
+
+        <details>
+          <summary>Can I customize design in my budget? <span>+</span></summary>
+          <p>Yes. Share your budget and reference style — we’ll propose the best design options that match your requirement.</p>
+        </details>
+      </div>
+
+      <div class="heroCTAs" style="margin-top:18px">
+        <a class="btn primary" href="#quote">Get Quote Now</a>
+        <a class="btn" href="https://wa.me/XXXXXXXXXXX?text=Hi%20PURECARAT%2C%20I%20want%20help%20choosing%20lab-grown%20diamond%20jewellery." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:flex-start; justify-content:space-between">
+        <div>
+          <b style="color:var(--text)">PURECARAT</b><br/>
+          IGI Certified • BIS Hallmark • Luxury Finish
+        </div>
+        <div>
+          <b style="color:var(--text)">Quick Links</b><br/>
+          <a href="#quote">Get Quote</a> • <a href="#bestsellers">Best Sellers</a> • <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <b style="color:var(--text)">Contact</b><br/>
+          WhatsApp: <a href="https://wa.me/XXXXXXXXXXX" target="_blank" rel="noopener">Click here</a><br/>
+          Website: <a href="https://purecarat.in/" target="_blank" rel="noopener">purecarat.in</a>
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        © <span id="year"></span> PURECARAT. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BAR -->
+  <div class="stickyBar">
+    <div class="stickyInner">
+      <div class="txt">
+        <b>Get Best Price Quote</b>
+        <span>WhatsApp reply in ~10 mins</span>
+      </div>
+      <div class="actions">
+        <a class="btn" href="#quote">Quote</a>
+        <a class="btn primary" href="https://wa.me/XXXXXXXXXXX?text=Hi%20PURECARAT%2C%20I%20want%20best%20price%20quote." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ✅ Replace this function with your real form submit (Shopify app, Zapier, Make, Webhook, etc.)
+    function handleLead(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const budget = document.getElementById('budget').value;
+      const category = document.getElementById('category').value;
+      const occasion = document.getElementById('occasion').value;
+      const note = document.getElementById('note').value.trim();
+
+      const msg =
+        `Hi PURECARAT, I want a best price quote.%0A%0A` +
+        `Name: ${encodeURIComponent(name)}%0A` +
+        `WhatsApp: ${encodeURIComponent(phone)}%0A` +
+        `Budget: ${encodeURIComponent(budget)}%0A` +
+        `Interested In: ${encodeURIComponent(category)}%0A` +
+        `Occasion: ${encodeURIComponent(occasion)}%0A` +
+        `Preference: ${encodeURIComponent(note || '—')}`;
+
+      // ✅ Put your WhatsApp number with country code (no +, no spaces)
+      const WHATSAPP_NUMBER = "XXXXXXXXXXX";
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+      return false;
+    }
+  </script>
+
+</body>
+</html>
