@@ -1,1 +1,0 @@
-PS C:\Users\hy\Desktop\EMP\ecom> .\.venv\Scripts\Activate.ps1 Activate vurtual envarionment
